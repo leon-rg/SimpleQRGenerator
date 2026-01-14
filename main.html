@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Códigos QR</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <button id="btn-theme" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+        <h1 id="app-title">Generador QR</h1>
+    </header>
+
+    <div class="container">
+        <div class="target-display" id="target-display">
+            Crea tu código QR personalizado
+        </div>
+
+        <div class="input-group">
+            <label for="qr-type" id="label-qr-type">Tipo de contenido</label>
+            <select id="qr-type">
+                <option id="opt-type-text" value="text">Texto</option>
+                <option id="opt-type-url" value="url">URL</option>
+                <option id="opt-type-email" value="email">Email</option>
+                <option id="opt-type-phone" value="phone">Teléfono</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="qr-input" id="label-qr-input">Contenido</label>
+            <textarea id="qr-input" placeholder="Escribe aquí..."></textarea>
+        </div>
+
+        <div class="input-group">
+            <label id="label-size">Tamaño</label>
+            <select id="qr-size">
+                <option id="opt-size-small" value="128">Pequeño</option>
+                <option id="opt-size-med" value="256" selected>Mediano</option>
+                <option id="opt-size-large" value="512">Grande</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Personalizar colores</label>
+            <div class="color-group">
+                <div class="color-input">
+                    <label id="label-qr-color">QR</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="qr-color" value="#000000" onchange="updateColorValue('qr-color')">
+                        <span class="color-value" id="qr-color-value">#000000</span>
+                    </div>
+                </div>
+                <div class="color-input">
+                    <label id="label-qr-bg">Fondo</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="qr-bg" value="#ffffff" onchange="updateColorValue('qr-bg')">
+                        <span class="color-value" id="qr-bg-value">#ffffff</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="btn-generate" class="primary" onclick="generateQR()">Generar código QR</button>
+        
+        <div id="qrcode-container">
+            <div id="qrcode"></div>
+        </div>
+
+        <button class="download-btn success" id="download-btn" onclick="downloadQR()">Descargar QR</button>
+
+        <div class="info" id="info-text">
+            💡 Escanea con la cámara de tu móvil
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
